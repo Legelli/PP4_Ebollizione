@@ -1,0 +1,166 @@
+%==================================================
+%      PREAMBOLO e DICHIARAZIONI INIZIALI
+%==================================================
+\documentclass[10pt,oneside,a4paper]{article}
+
+\usepackage[latin1]{inputenc} 
+\usepackage[italian]{babel}
+\usepackage{siunitx} %Inserisce automaticamente i dati con le unità  di misura correttamente formattate del SI (utilizzo: \SI{0.82}{m^2}, in generale \SI{misura con il punto decimale}{unità  di misura})
+\sisetup{output-decimal-marker = {.}, separate-uncertainty = true, input-uncertainty-signs = \pm, detect-weight=true, detect-family=true} %per usare SI con il punto decimale
+\usepackage{listings} %Per citare codice informatico formattandolo correttamente
+\usepackage{amsmath,amsthm,verbatim,amssymb,amsfonts,amscd, graphicx,mathtools}
+\usepackage[makeroom]{cancel}
+\newcommand{\abs}[1]{\left\lvert\,#1\,\right\rvert}
+\usepackage{geometry}
+\usepackage{epigraph}
+\usepackage{booktabs}	%tabelle migliorate
+\usepackage{tablefootnote}	%note a piè di pagina in tabella
+\usepackage{threeparttable} %tabella con note a piè di tabella
+\usepackage{caption}	%descrizione per figure
+\usepackage{dblfnote}
+\captionsetup{tableposition=top,figureposition=bottom,font=small} %setup descrizione
+\usepackage{float}
+\usepackage{esvect} %vettori
+\usepackage{longtable} %tabelle lunghe
+\usepackage[dvipsnames]{xcolor}
+\definecolor{sepia}{HTML}{80002A}
+\usepackage[colorlinks=true, citecolor=black, linkcolor=sepia, urlcolor=black]{hyperref}
+\usepackage{mathrsfs}
+%\usepackage[utf8]{inputenc}
+
+\usepackage{multicol}
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
+
+\newcommand{\var}{\operatorname{var}}
+\newcommand{\cov}{\operatorname{cov}}
+
+
+\usepackage{listings} %Per inserire codice
+\lstnewenvironment{codice_c}[1][]
+{\lstset{basicstyle=\small\ttfamily, columns=fullflexible,
+keywordstyle=\color{red}\bfseries, commentstyle=\color{blue},
+language=C, basicstyle=\small,
+numbers=left, numberstyle=\tiny,
+stepnumber=2, numbersep=5pt, frame=shadowbox,  showstringspaces=false, #1}}{}
+
+\setcounter{section}{-1}
+
+%==================================================
+%                  PRIMA PAGINA
+%==================================================
+
+\title{\textsc{Variazione della tensione di vapore saturo dell'acqua con la temperatura}}
+\author{\small{G. Galbato Muscio} \and \small{L. Gravina} \and \small{L. Graziotto}}
+\date{}
+
+\begin{document}
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5, trim={2.8cm 8.9cm 0 9cm}, clip]{logo.png}
+	\end{figure}
+	\maketitle
+	\begin{center} 
+		\fbox{{\fontsize{12pt}{8mm}\textsc{Gruppo B}}} \\
+		\vspace{1cm}
+		\begin{tabular}{ccc}
+			Esperienza di laboratorio && Consegna della relazione \\
+			\emph{\small{11 dicembre 2017}} &&  \emph{\small{15 gennaio 2018}}\\
+		\end{tabular} 
+		\vspace{0.5cm}
+	\end{center}
+\hrule
+\vspace{0.5cm}
+\begin{abstract}
+Si studia la dipendenza della tensione di vapore saturo, ossia la pressione alla quale si ha ebollizione di un liquido, dalla temperatura del liquido stesso. Il liquido utilizzato è acqua.
+\end{abstract}
+\newpage
+\tableofcontents %Indice
+\listoftables %Indice delle tabelle
+\listoffigures %Indice dei grafici
+
+\pagebreak
+\begin{multicols}{2}
+
+%==================================================
+%         SCOPO E DESCRIZIONE DELL'ESPERIENZA
+%==================================================
+\section{Scopo e descrizione dell'esperienza}
+\label{sec:descrizione}
+L'ebollizione di un liquido avviene quando l'evaporazione non riguarda unicamente le molecole a contatto diretto con l'ambiente esterno, ma anche porzioni di liquido interne: tale fenomeno può verificarsi unicamente quando la pressione di vapore saturo, ossia quella di equilibrio tra fase gassosa del sistema e fase liquida, eguaglia la pressione applicata sul sistema termodinamico nel suo insieme. La temperatura di ebollizione di un liquido è dunque definita in relazione alla pressione $P$ applicata sul sistema, ed è quella a cui la tensione di vapore saturo uguaglia $P$.
+
+L'esperienza si propone di studiare la dipendenza della tensione di vapore saturo dalla temperatura, portando il liquido, in questo caso acqua, ad una certa temperatura, e quindi diminuendo la pressione del sistema termodinamico chiuso in modo da portare il liquido all'ebollizione: la pressione raggiunta sarà pari alla tensione di vapore saturo.
+
+La diminuzione di pressione nel sistema chiuso è ottenuta mediante una pompa rotativa, collegata al sistema termodinamico mediante tubi che passano attraverso una camera in vetro immersa in azoto liquido: tale componente del \emph{setup} sperimentale ha lo scopo di intrappolare, condensandolo, il vapor d'acqua in uscita dal sistema termodinamico, affinché esso non contamini l'olio lubrificante della pompa stessa, diminuendone le prestazioni.
+
+Si prevede un andamento crescente della tensione di vapore saturo in funzione della temperatura, ovvero che a pressioni maggiori la temperatura di ebollizione sia più elevata: è necessaria un'energia cinetica maggiore, dunque una temperatura maggiore, delle molecole del liquido per vincere infatti la pressione applicata sul sistema e passare dalla fase liquida a quella gassosa.
+
+Per l'analisi dati si utilizzerà un notebook in linguaggio \texttt{Python}.
+
+
+%==================================================
+%				APPARATO SPERIMENTALE
+%==================================================		
+\section{Apparato Sperimentale}
+\subsection{Strumenti}
+\label{subsec:strumenti}
+\begin{itemize}
+	\item Recipiente in pyrex in cui è inserita $n = \SI{1}{mol}$ di $H_2O$;
+	\item Resistenza elettrica inserita nel recipiente di cui sopra, collegata con un generatore di tensione;
+	\item Pompa rotativa che permette di variare la pressione nel recipiente di cui sopra;
+	\item Camera in vetro immersa in un bagno di azoto liquido a $T = \SI{77}{K}$, collegata da una parte al recipiente di cui sopra e dall'altra alla pompa rotativa;
+	\item Rubinetti tra la camera in vetro e il recipiente e tra il recipiente e l'ambiente esterno.
+\end{itemize}
+\subsection{Sensori}
+\begin{itemize}
+	\item Manometro [risoluzione: \SI{1e-4}{bar}];
+	\item Termometro a mercurio [risoluzione: \SI{0.2}{\degree C}, incertezza \SI{0.03}{\degree C}].
+\end{itemize}
+
+%==================================================
+%            SEQUENZA OPERAZIONI SPERIMENTALI
+%==================================================
+\section{Sequenza Operazioni Sperimentali} 
+
+\paragraph{Modello fisico ideale}
+La relazione che lega la tensione di vapore saturo alla temperatura di ebollizione è l'\textbf{equazione di Clausius-Clapeyron}
+\large{
+\begin{equation}\label{eq:clausius-clapeyron}
+P =  P_0 e^{-\frac{\lambda_\text{ev} M}{R} \big(\frac{1}{T} - \frac{1}{T_0}\big) }
+\end{equation}
+}
+\normalsize
+Dove $\lambda_\text{ev}$ rappresenta il calore latente di evaporazione, $M$ è la massa molare del liquido, $R$ è la costante universale dei gas e $P_0$, $V_0$ indicano i valori di pressione e temperatura di un punto nel piano pressione-temperatura assunto come riferimento.
+
+\paragraph{Situazione reale}
+Il sistema termodinamico è costituito da una massa d'acqua allo stato liquido di \SI{18}{g}; ricordando che la massa molare è \SI{18}{g/mol}, si può esprimere la quantità presente come \SI{1}{mol}. A partire dall'equazione~\ref{eq:clausius-clapeyron} ci si prefigge di ricavare sperimentalmente il valore del calore latente di evaporazione $\lambda_\text{ev}$, che si confronterà con il valore vero di \SI{539.31}{cal / g}. In questo caso, si utilizzerà il valore della costante dei gas $R = \SI{1.987}{cal / (K \cdot mol)}$
+
+Si eseguono $10$ prese dati della tensione di vapore saturo variando la temperatura del liquido nell'intervallo $38 \div 82$ \SI{}{\degree C}; si osserva, in particolare, che una volta portato il liquido a temperatura, riscaldandolo mediante la resistenza elettrica e con il rubinetto a contatto con l'ambiente esterno aperto, quando quest'ultimo viene chiuso e la pressione viene diminuita anche la temperatura diminuisce: si ritiene che questo sia dovuto in parte alla non adiabaticità delle pareti del recipiente, in parte alla fuga delle molecole già allo stato aeriforme che vengono portate al di fuori dal sistema termodinamico dall'azione della pompa rotativa, e fatte condensare nella camera immersa in azoto liquido. Si reputa pertanto che alla fine dell'esperimento la quantità di acqua presente nel recipiente sarà sensibilmente inferiore a quella presente inizialmente.
+
+I punti relativi alla tensione di vapore saturo ad una data temperatura vengono rappresentati in un grafico semilogaritmico: l'equazione di Clausius-Clapeyron~\ref{eq:clausius-clapeyron} viene pertanto riscritta come
+\begin{equation*}
+\log{\Big(\frac{P}{P_0}\Big)} = \frac{\lambda_\text{ev} M}{R} \Big(\frac{1}{T_0} - \frac{1}{T} \Big),
+\end{equation*}
+da cui è chiara la dipendenza del logaritmo della pressione, rapportata alla pressione di riferimento, dall'inverso della temperatura di ebollizione.
+
+Ancora, indicando con $m$ il coefficiente angolare della retta che interpola i punti sperimentali nel grafico semilogaritmico, si ha 
+\begin{equation*} 
+\lambda_\text{ev} = - \frac{m R}{M},
+\end{equation*}
+ove l'unità di misura del coefficiente $m$ è [\SI{}{K}] e quella del calore latente è [\SI{}{cal / g}].
+
+
+\paragraph{Procedura e presa dati}
+
+
+%==================================================
+%				CONSIDERAZIONI FINALI
+%==================================================
+\section{Considerazioni finali}
+
+
+
+\end{multicols}
+\end{document}
