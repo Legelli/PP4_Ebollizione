@@ -153,6 +153,12 @@ Ancora, indicando con $m$ il coefficiente angolare della retta che interpola i p
 \end{equation}
 ove l'unità di misura del coefficiente $m$ è [\SI{}{K}] e quella del calore latente è [\SI{}{cal / g}].
 
+Il punto del piano pressione-temperatura assunto come riferimento è
+\begin{equation*}
+P_0 = \SI{101.32}{kPa} \;\;\;\; T_0 = \SI{373.15}{K},
+\end{equation*}
+ovvero i valori relativi alla temperatura di ebollizione a pressione atmosferica dell'acqua.
+
 
 \paragraph{Procedura e presa dati}
 Una volta organizzato l'apparato sperimentale è necessario tarare il manometro avendo cura di lasciare aperta la valvola che separa l'ambiente esterno dall'ampolla contenente il liquido, in modo da tarare a \SI{0}{bar} la pressione atmosferica: è sufficiente eseguire questa operazione solamente all'inizio della presa dati. Si procede quindi come segue
@@ -164,7 +170,7 @@ Una volta organizzato l'apparato sperimentale è necessario tarare il manometro a
 	\item Si chiude $\mathrm{R}_1$ e si riporta l'ampolla a pressione atmosferica aprendo $\mathrm{R}_2$.
 \end{enumerate}
 
-I dati raccolti sono riportati nella tabella \ref{tab:misure}, nel grafico \ref{fig:grafico} sono invece riportati i valori del logaritmo $\log (P/P_0)$ al variare della quantità $1/T$, insieme al fit lineare dei dati.
+I dati raccolti sono riportati nella tabella \ref{tab:misure}, nel grafico \ref{fig:Pvst-compression} sono invece riportati i valori del logaritmo $\log (P/P_0)$ al variare della quantità $1/T$, insieme al fit lineare dei dati.
 
 \begin{table*}
 \begin{center}
@@ -195,8 +201,8 @@ I dati raccolti sono riportati nella tabella \ref{tab:misure}, nel grafico \ref{
 \centering
 \hspace*{-2cm} 
 \includegraphics[width=9cm, height=6cm]{fit.eps}
-\captionof{figure}{Andamento della pressione in funzione del tempo, $\Delta V = \SI{10}{mL}$}
-\label{fig:Pvst-compression}
+\captionof{figure}{Logaritmo della pressione, rapportata a $P_0$, in funzione dell'inverso della temperatura}
+\label{fig:grafico}
 \end{Figure}
 
 
@@ -212,7 +218,7 @@ Utilizzando (\ref{eq:calore_latente}) si calcola il calore latente di ebollizion
 \begin{equation*}
 	\boxed{\lambda_{\mathrm{ev}} = \SI{534.7 \pm 4.8}{cal/g}	}
 \end{equation*}
-compatibile con il \emph{valore vero} pari a $\lambda_{\mathrm{ev}} = \SI{539.31}{cal/g}$ in una $\sigma$.
+compatibile con il \emph{valore vero} pari a $\lambda_{\mathrm{ev}} = \SI{539.31}{cal/g}$ in una deviazione standard.
 
 L'incertezza su tale parametro è stata ottenuta propagando l'incertezza sul coefficiente angolare su (\ref{eq:calore_latente}), con la formula
 \begin{equation*}
@@ -224,6 +230,15 @@ dove le quantità $\mathrm{R} = \SI{1.987}{cal \cdot K^{-1} \cdot mol^{-1}}$ e $ 
 %				CONSIDERAZIONI FINALI
 %==================================================
 \section{Considerazioni finali}
+La compatibilità con il valore vero entro l'intervallo di una deviazione standard e l'incertezza dell'ordine dell'$1\%$ sono indice del fatto che l'esperienza sperimentale sia in accordo con il modello teorico, l'equazione di Clausius-Clapeyron sopra riportata, che regola la transizione di fase da liquido a gas a differenti pressioni.
+
+Si è evidenziato tuttavia come sia stato necessario adottare un'incertezza stimata dal chi quadro della regressione lineare, in quanto quella propagata risulta essere sottostimata. Si ritiene che questo sia dovuto in prevalenza alla risoluzione del manometro e alla conseguente scelta di cifre significative, che non riflette da un lato la presenza di errori sistematici, dall'altro la non chiara identificazione del punto di ebollizione. Durante il corso dell'esperimento, infatti, il criterio per stabilire se il liquido avesse raggiunto l'ebollizione o meno, e dunque se la pressione applicata sul sistema, letta sul manometro, fosse pari alla tensione di vapore saturo alla data temperatura, è stato visivo, dato dall'osservazione delle bolle in formazione all'interno del liquido stesso; pertanto, in primis, il valore della pressione non rispecchia con la precisione riportata nella tabella~\ref{tab:misure} il punto di ebollizione. In secondo luogo, si è osservata una fluttuazione piuttosto consistente del valore di pressione riportato sul manometro, e dunque si è scelto un valore che fosse il più possibile centrale nell'intervallo di valori indicati nella frazione di tempo intorno all'istante di ebollizione (in sostanza, i valori indicati non erano stabili, ma la lettura variava molto rapidamente in pochi istanti di tempo). 
+
+Per quanto riguarda invece la temperatura, si è già sottolineato come la non adiabaticità del recipiente in vetro sia responsabile della considerevole differenza di valore tra quello letto alla chiusura del rubinetto esterno e al contestuale azionamento della pompa da vuoto, e quella letta al raggiungimento dell'ebollizione. Si ritiene inoltre, come si è già osservato, che vi sia una perdita di molecole di liquido, condensate nella camera immersa in azoto liquido.
+
+Nel complesso, si ritiene che, anche nel caso si fosse aumentato il numero di punti sperimentali, la stima del calore latente di evaporazione non sarebbe stata più aderente al valore vero; al contrario, si reputa che l'incertezza sarebbe stata minore ma non in direzione di un risultato più preciso. Si giudica che un valore più preciso avrebbe potuto darsi nel caso in cui si fosse utilizzato un rubinetto tra pompa da vuoto e sistema termodinamico che avesse permesso un controllo sulla pressione meno brusco: la possibilità di regolare l'apertura e chiusura dello stesso con una valvola dotata di minore gioco avrebbe influito su una più accurata lettura della pressione del sistema, nonché su una determinazione meno soggetta a errore umano del punto di ebollizione.
+
+
 
 
 
