@@ -146,70 +146,14 @@ I punti relativi alla tensione di vapore saturo ad una data temperatura vengono 
 da cui è chiara la dipendenza del logaritmo della pressione, rapportata alla pressione di riferimento, dall'inverso della temperatura di ebollizione.
 
 Ancora, indicando con $m$ il coefficiente angolare della retta che interpola i punti sperimentali nel grafico semilogaritmico, si ha 
-\begin{equation}\label{eq:calore_latente} 
+\begin{equation*} 
 \lambda_\text{ev} = - \frac{m R}{M},
-\end{equation}
+\end{equation*}
 ove l'unità di misura del coefficiente $m$ è [\SI{}{K}] e quella del calore latente è [\SI{}{cal / g}].
 
 
 \paragraph{Procedura e presa dati}
-Una volta organizzato l'apparato sperimentale è necessario tarare il manometro avendo cura di lasciare aperta la valvola che separa l'ambiente esterno dall'ampolla contenente il liquido, in modo da tarare a \SI{0}{bar} la pressione atmosferica: tale taratura è sufficiente farla solamente all'inizio della presa dati. Si procede quindi come segue
-\begin{enumerate}
-	\item A pressione atmosferica (quindi con la valvola $\mathrm{R}_2$\footnote{Con $\mathrm{R}_2$ ci si riferisce alla valvola che separa l'ampolla dall'ambiente.} aperta) si porta l'acqua ad una temperatura $\tilde{T}$.
-	\item Con la pompa del vuoto accesa, si chiude la valvola $\mathrm{R}_2$ e si apre $\mathrm{R}_1$\footnote{Con $\mathrm{R}_1$ ci si riferisce alla valvola che separa l'ampolla dalla pompa del vuoto.} in modo da abbassare la pressione all'interno dell'ampolla.
-	\item Si abbassa la pressione fino a che non si distinguono i primi segni evidenti dell'ebollizione dell'acqua (formazione di bolle che si muovono dal fono alla superficie, increspatura e movimento della superficie dell'acqua).
-	\item Si prende la coppia di misure di pressione-temperatura $(\mathrm{P}, \mathrm{T})$ con $\mathrm{T} < \bar{T}$ perché, come accennato in precedenza, nel procedimento l'acqua avrà scambiato calore con l'ambiente circostante.
-	\item Si chiude $\mathrm{R}_1$ e si riporta l'ampolla a pressione atmosferica aprendo $\mathrm{R}_2$.
-\end{enumerate}
 
-I dati raccolti sono riportati nella tabella \ref{tab:misure}, nel grafico \ref{fig:grafico} sono invece riportati i valori del logaritmo $\log (P/P_0)$ al variare della quantità $1/T$, insieme al fit lineare dei dati.
-
-\begin{table*}
-\begin{center}
-\begin{tabular}{cc}
-	$P$ & $T$ \\
-	$[\SI{}{kPa}]$ & $[\SI{}{K}]$ \\
-	
-	\toprule
-	7.79 & 312.05 \\
-	10.89 & 318.35 \\
-	12.50 & 321.85 \\
-	17.77 & 329.55 \\
-	22.13 & 334.35 \\
-	27.90 & 340.15 \\
-	30.41 & 341.55 \\
-	36.04 & 345.75 \\
-	43.17 & 350.45 \\
-	50.02 & 354.55 \\
-	
-\end{tabular}	
-\captionof{table}{Valori di temperatura e pressione ai quali si è osservata l'ebollizione.}
-\label{tab:misure}
-\end{center}
-\end{table*}
-
-%INSERIRE IL GRAFICO DI LOG(P/P0) SU 1/T (dall'iPad ho problemi con le figure)
-
-
-
-\paragraph{Analisi dati}
-Un preliminare test del $\chi^2$ sul fit produce un valore incompatibile con il modello lineare previsto: essendo l'andamento delle quantità evidentemente lineare, un tale risultato è indice di una sottostima delle incertezze sull'asse delle ordinate (che a priori è la propagazione dell'errore strumentale del manometro sulla quantità $\log (P/P_0)$), quindi si inferiscono gli errori sui logaritmi a partire dal fit e si ristimano le incertezze sui parametri del fit stesso.
-Si calcolano infine i parametri del fit lineare, pari rispettivamente a
-\begin{equation*}
-	m = \SI{-4844 \pm 43}{T^{-1}}, \quad q = \SI{12.97 \pm 0.13}{}.
-\end{equation*}
-
-Utilizzando (\ref{eq:calore_latente}) si calcola il calore latente di ebollizione dell'acqua, pari a
-\begin{equation*}
-	\boxed{\lambda_{\mathrm{ev}} = \SI{534.7 \pm 4.8}{cal/g}	}
-\end{equation*}
-compatibile con il \emph{valore vero} pari a $\lambda_{\mathrm{ev}} = \SI{539.31}{cal/g}$ in una $\sigma$.
-
-L'incertezza su tale parametro è stata ottenuta propagando l'incertezza sul coefficiente angolare su (\ref{eq:calore_latente}), con la formula
-\begin{equation*}
-	\sigma_{\lambda}^2 = (-\frac{R}{M})^2 \sigma_\mathrm{m}^2	
-\end{equation*}
-dove le quantità $\mathrm{R} = \SI{1.987}{cal * K^{-1} * mol^{-1}}$ e $ \mathrm{M} = \SI{18}{g}$ si sono prese senza incertezze.
 
 %==================================================
 %				CONSIDERAZIONI FINALI
