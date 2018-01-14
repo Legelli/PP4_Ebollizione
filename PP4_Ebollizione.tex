@@ -74,7 +74,7 @@ stepnumber=2, numbersep=5pt, frame=shadowbox,  showstringspaces=false, #1}}{}
 \hrule
 \vspace{0.5cm}
 \begin{abstract}
-Si studia la dipendenza della tensione di vapore saturo, ossia la pressione alla quale si ha ebollizione di un liquido, dalla temperatura del liquido stesso. Il liquido utilizzato è acqua.
+Si studia la dipendenza della tensione di vapore saturo, ossia la pressione alla quale si ha ebollizione di un liquido, dalla temperatura del liquido stesso. Dall'equazione di Clausius-Clapeyron, che regola il fenomeno, si ricava sperimentalmente il calore latente di evaporazione del liquido. Il liquido utilizzato è acqua.
 \end{abstract}
 \newpage
 \tableofcontents %Indice
@@ -96,6 +96,8 @@ L'esperienza si propone di studiare la dipendenza della tensione di vapore satur
 La diminuzione di pressione nel sistema chiuso è ottenuta mediante una pompa rotativa, collegata al sistema termodinamico mediante tubi che passano attraverso una camera in vetro immersa in azoto liquido: tale componente del \emph{setup} sperimentale ha lo scopo di intrappolare, condensandolo, il vapor d'acqua in uscita dal sistema termodinamico, affinché esso non contamini l'olio lubrificante della pompa stessa, diminuendone le prestazioni.
 
 Si prevede un andamento crescente della tensione di vapore saturo in funzione della temperatura, ovvero che a pressioni maggiori la temperatura di ebollizione sia più elevata: è necessaria un'energia cinetica maggiore, dunque una temperatura maggiore, delle molecole del liquido per vincere infatti la pressione applicata sul sistema e passare dalla fase liquida a quella gassosa.
+
+Si procede quindi a confrontare l'andamento ottenuto per via sperimentale con quello previsto per via teorica dall'equazione di Clausius-Clapeyron: eseguendo un'interpolazione tra le due curve, si ricava sperimentalmente il valore del calore latente di evaporazione dell'acqua.
 
 Per l'analisi dati si utilizzerà un notebook in linguaggio \texttt{Python}.
 
@@ -153,11 +155,11 @@ ove l'unità di misura del coefficiente $m$ è [\SI{}{K}] e quella del calore late
 
 
 \paragraph{Procedura e presa dati}
-Una volta organizzato l'apparato sperimentale è necessario tarare il manometro avendo cura di lasciare aperta la valvola che separa l'ambiente esterno dall'ampolla contenente il liquido, in modo da tarare a \SI{0}{bar} la pressione atmosferica: tale taratura è sufficiente farla solamente all'inizio della presa dati. Si procede quindi come segue
+Una volta organizzato l'apparato sperimentale è necessario tarare il manometro avendo cura di lasciare aperta la valvola che separa l'ambiente esterno dall'ampolla contenente il liquido, in modo da tarare a \SI{0}{bar} la pressione atmosferica: è sufficiente eseguire questa operazione solamente all'inizio della presa dati. Si procede quindi come segue
 \begin{enumerate}
 	\item A pressione atmosferica (quindi con la valvola $\mathrm{R}_2$\footnote{Con $\mathrm{R}_2$ ci si riferisce alla valvola che separa l'ampolla dall'ambiente.} aperta) si porta l'acqua ad una temperatura $\tilde{T}$.
 	\item Con la pompa del vuoto accesa, si chiude la valvola $\mathrm{R}_2$ e si apre $\mathrm{R}_1$\footnote{Con $\mathrm{R}_1$ ci si riferisce alla valvola che separa l'ampolla dalla pompa del vuoto.} in modo da abbassare la pressione all'interno dell'ampolla.
-	\item Si abbassa la pressione fino a che non si distinguono i primi segni evidenti dell'ebollizione dell'acqua (formazione di bolle che si muovono dal fono alla superficie, increspatura e movimento della superficie dell'acqua).
+	\item Si abbassa la pressione fino a che si distinguono i primi segni evidenti dell'ebollizione dell'acqua (formazione di bolle che si muovono dal fondo alla superficie, increspatura e movimento della superficie dell'acqua).
 	\item Si prende la coppia di misure di pressione-temperatura $(\mathrm{P}, \mathrm{T})$ con $\mathrm{T} < \bar{T}$ perché, come accennato in precedenza, nel procedimento l'acqua avrà scambiato calore con l'ambiente circostante.
 	\item Si chiude $\mathrm{R}_1$ e si riporta l'ampolla a pressione atmosferica aprendo $\mathrm{R}_2$.
 \end{enumerate}
@@ -169,7 +171,7 @@ I dati raccolti sono riportati nella tabella \ref{tab:misure}, nel grafico \ref{
 \begin{tabular}{cc}
 	$P$ & $T$ \\
 	$[\SI{}{kPa}]$ & $[\SI{}{K}]$ \\
-	
+	$\pm 0.01$ & $0.03$ \\
 	\toprule
 	7.79 & 312.05 \\
 	10.89 & 318.35 \\
@@ -207,9 +209,9 @@ compatibile con il \emph{valore vero} pari a $\lambda_{\mathrm{ev}} = \SI{539.31
 
 L'incertezza su tale parametro è stata ottenuta propagando l'incertezza sul coefficiente angolare su (\ref{eq:calore_latente}), con la formula
 \begin{equation*}
-	\sigma_{\lambda}^2 = (-\frac{R}{M})^2 \sigma_\mathrm{m}^2	
+	\sigma_{\lambda}^2 = \Big(-\frac{R}{M}\Big)^2 \sigma_\mathrm{m}^2	
 \end{equation*}
-dove le quantità $\mathrm{R} = \SI{1.987}{cal * K^{-1} * mol^{-1}}$ e $ \mathrm{M} = \SI{18}{g}$ si sono prese senza incertezze.
+dove le quantità $\mathrm{R} = \SI{1.987}{cal \cdot K^{-1} \cdot mol^{-1}}$ e $ \mathrm{M} = \SI{18}{g}$ si sono prese senza incertezze.
 
 %==================================================
 %				CONSIDERAZIONI FINALI
